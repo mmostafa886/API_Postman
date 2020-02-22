@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "6dcc522e-e482-41b1-ad07-8802222835b6",
+		"name": "GitHub_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetTheReposWithAuthentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4384ce4-b409-4b29-852f-7f728a9d7f57",
+						"exec": [
+							"pm.test(\"Status code is 200, You are doing Good\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms, You are doing Good\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Require Authentication Message\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"AutomationTask\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ALLAHakbar886",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mmostafa886",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTheReposWithoutAuthentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "37359647-9612-4a66-a0ee-77124edf1fad",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 401, You are Unauthorized\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Require Authentication Message\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Requires authentication\");",
+							"});",
+							"",
+							"pm.test(\"Require Authentication Message_2\", function () {",
+							"",
+							"    pm.expect(jsonData.message).to.eql(\"Requires authentication\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

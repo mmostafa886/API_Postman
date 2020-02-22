@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "6b62821f-22f2-4a5a-a4e3-64f5d09a0165",
+		"name": "TestCafeTraning_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d5487e9-c30f-4c1b-9d2e-56be15919782",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://httpbin.org/get?param1=mohamed&param2=mostafa",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "param1",
+							"value": "mohamed"
+						},
+						{
+							"key": "param2",
+							"value": "mostafa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request002",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\":\"Mohamed\",\n\t\"email\":\"test@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GettingAValurfromResponse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39643097-d461-4b93-ab81-8f247895d229",
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.globals.set(\"uuid\", response.uuid);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://httpbin.org/uuid",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UsingOutputFromOtherRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\":\"Mohamed Mostafa\",\n\t\"email\":\"test@test.com\",\n\t\"uuid\":\"{{uuid}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en32li175dbkx.x.pipedream.net?id=123456789&Name=Mohamed Mostafa",
+					"protocol": "https",
+					"host": [
+						"en32li175dbkx",
+						"x",
+						"pipedream",
+						"net"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123456789"
+						},
+						{
+							"key": "Name",
+							"value": "Mohamed Mostafa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UsingVariableInTheURL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/get?param1=tam&param3=tam3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "param1",
+							"value": "tam"
+						},
+						{
+							"key": "param3",
+							"value": "tam3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "from Import",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "l0PCwWM+k1D70ds6jh7zBDhOp4FNEFpBFa3SPwzjn66umxb3FOs+N5/bqXiSjVXbNhIn6a4cFk8IZMwK9HWSYQ=="
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36"
+					},
+					{
+						"key": "Related-Request-Id",
+						"value": "T2TK3CNS1GPH16163BJ4"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Referer",
+						"value": "https://www.goodreads.com/search?utf8=^%^E2^%^9C^%^93^&query=tamer"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Cookie",
+						"value": "ccsid=363-4918784-9955248; locale=en; _session_id2=1b7bf4dd226945b0aabe5cea18eea6fc; __utma=250562704.320876538.1582297741.1582297741.1582297741.1; __utmc=250562704; __utmz=250562704.1582297741.1.1.utmcsr=(direct)^|utmccn=(direct)^|utmcmd=(none); __utmt=1; __qca=P0-2033229674-1582297744180; __gads=ID=f34615be8f3382ca:T=1582297748:S=ALNI_MaVR7o1oZn_mZv7Ov3JUL7yuICYLA; never_show_interstitial=true; __utmb=250562704.3.10.1582297741"
+					}
+				],
+				"url": {
+					"raw": "https://www.goodreads.com/sign_in_prompt",
+					"protocol": "https",
+					"host": [
+						"www",
+						"goodreads",
+						"com"
+					],
+					"path": [
+						"sign_in_prompt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "tamer/",
+					"host": [
+						"tamer"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestRequest0023456",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prerequisites_Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "15c156ff-e52d-4b2a-94df-62bc8673cd15",
+						"exec": [
+							"pm.environment.set(\"randomName\",\"tamer_\"+parseInt(Math.random()*10000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/:id/get?param1={{randomName}}&param3=tam3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						":id",
+						"get"
+					],
+					"query": [
+						{
+							"key": "param1",
+							"value": "{{randomName}}"
+						},
+						{
+							"key": "param3",
+							"value": "tam3"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

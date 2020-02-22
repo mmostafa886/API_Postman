@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "a1017ec8-2c7e-43fb-9cdb-f296901a8bf7",
+		"name": "MyTraining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DataSetRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc444b07-93df-49e9-a88d-b8deabc68b2b",
+						"exec": [
+							"const response = pm.response.json();",
+							"if(pm.iterationData.get(\"expectedStatus\") == 200){",
+							"    pm.test(\"Check Name\", function () {",
+							"        pm.expect(response.json.Name).to.eql(pm.iterationData.get(\"Name\"));",
+							"    });",
+							"    ",
+							"    pm.test(\"Check Phone\", function () {",
+							"        pm.expect(response.json.Phone).to.eql(pm.iterationData.get(\"Phone\"));",
+							"    }); ",
+							"        ",
+							"    pm.test(\"Check Email\", function () {",
+							"        pm.expect(response.json.Email).to.eql(pm.iterationData.get(\"Email\"));",
+							"    }); ",
+							"}",
+							"else{",
+							"    pm.test(\"Check Not Valid\", function () {",
+							"        pm.expect(response.json).to.be.null;",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\":\"{{Name}}\",\n\t\"Phone\":{{Phone}},\n\t\"Email\":\"{{Email}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/post",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DummyRequest001",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DummyRequest002",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

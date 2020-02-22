@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "64d0ab82-cc58-4421-8694-a850d04a8679",
+		"name": "Workflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60dbe13d-8fe1-4a4b-aee3-94bb7a54272a",
+						"exec": [
+							"postman.setNextRequest(\"Request003\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "example.com",
+					"host": [
+						"example",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request002",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f0d5a1b-e482-407e-a888-ebcb8318ecb7",
+						"exec": [
+							"postman.setNextRequest(null)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "example.com",
+					"host": [
+						"example",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request003",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ce6a541-4d4b-4cf4-ab37-a10d5691187d",
+						"exec": [
+							"postman.setNextRequest(\"Request002\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "example.com",
+					"host": [
+						"example",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request004",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e2135c1-28de-484a-aa97-0a18507986fa",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "example.com",
+					"host": [
+						"example",
+						"com"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
