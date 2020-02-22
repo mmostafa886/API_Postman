@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "a1e45ba5-2688-418d-bba9-d61645dac0f0",
+		"name": "Mockyio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MockyIO_Menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03b088a3-aaf7-42b7-8547-cafa17425fbf",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var menuObject = jsonData.menu;",
+							"var i=0;",
+							"",
+							"    if(menuObject[i].name == \"steak\" && i < menuObject.length){",
+							"    pm.test(\"Check (Is Available) Value\", function () {",
+							"        pm.expect(menuObject[i].isAvailable).to.eql(false);",
+							"        i++;",
+							"    });",
+							"    }",
+							"    ",
+							"    else",
+							"    {",
+							"        i++;",
+							"    }",
+							"    ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mocky.io/v2/5e17a325300000ffa0d56635",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v2",
+						"5e17a325300000ffa0d56635"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
